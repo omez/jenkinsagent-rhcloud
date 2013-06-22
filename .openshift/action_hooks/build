@@ -1,3 +1,6 @@
 
 
+echo "Current user is "
+echo `whoami`
+
 echo "TEST!!!!!!!"
