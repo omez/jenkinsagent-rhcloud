@@ -4,6 +4,7 @@
 # $OPENSHIFT_INTERNAL_IP:8080
 
 export GIT_SSH=$OPENSHIFT_REPO_DIR/misc/gitssh_wrapper.sh
+echo "Env variable GIT_SSH exported as $GIT_SSH"
 
 
 
