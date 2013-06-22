@@ -1,2 +1,7 @@
 
 
+# git ssh wrapper
+export GIT_SSH=$OPENSHIFT_REPO_DIR/misc/gitssh_wrapper.sh && echo "GIT_SSH exported as $GIT_SSH"
+
+# ruby gems var
+export GEM_HOME=$OPENSHIFT_DATA_DIR/gems && echo "GEM_HOME exported as $GEM_HOME"
