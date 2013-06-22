@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ssh -i $OPENSHIFT_DATA_DIR/gitkey_rsa -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $@
+ssh -i $OPENSHIFT_DATA_DIR/gitkey_deployment_rsa -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $@
