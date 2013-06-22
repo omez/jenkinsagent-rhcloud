@@ -9,7 +9,7 @@ echo "Current user is "
 echo `whoami`
 
 KEYPATH_RSA=$OPENSHIFT_DATA_DIR/.ssh/gitkey_deployment_rsa
-if [ !-f ]; then
+if [ !-f $KEYPATH_RSA ]; then
 	echo "Generate key pair for wrapper to $KEYPATH_RSA"
 	ssh-keygen -t rsa -N "" -C "deplyment key" -f $KEYPATH_RSA
 else
