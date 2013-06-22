@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo "Exporting path on pre-start"
+PATH=$PATH:/qweqweqweqweqwe
+export PATH=$PATH
+

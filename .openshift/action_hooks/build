@@ -3,4 +3,8 @@
 echo "Current user is "
 echo `whoami`
 
-echo "TEST!!!!!!!"
+echo "Making binaries dir"
+mkdir $OPENSHIFT_DATA_DIR/bin
+
+echo "Making gems dir"
+mkdir $OPENSHIFT_DATA_DIR/gems
