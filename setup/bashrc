@@ -1,4 +1,5 @@
 
+# converted delimeters
 
 # git ssh wrapper
 export GIT_SSH=$OPENSHIFT_REPO_DIR/misc/gitssh_wrapper.sh && echo "GIT_SSH exported as $GIT_SSH"
