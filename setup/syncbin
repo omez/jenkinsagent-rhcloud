@@ -4,12 +4,12 @@
 #
 #
 #OPENSHIFT_DATA_DIR=/ded/www2/jenkinsagent
-BIN_DIR=$OPENSHIFT_DATA_DIR/bin
-BIN_SOURCES="$OPENSHIFT_REPO_DIR/bin $OPENSHIFT_DATA_DIR/gems/bin"
+BINARY_DIR=$OPENSHIFT_DATA_DIR/bin
+BINARY_SOURCES=$OPENSHIFT_REPO_DIR/bin $OPENSHIFT_DATA_DIR/gems/bin
 
 # remove corrupted links
 echo "Remove broken links ..."
-files=`find $BIN_DIR -maxdepth 1 -type l`
+files=`find $BINARY_DIR -maxdepth 1 -type l`
 
 for file in $files; do
 	if [ ! -f `readlink $file` ]; then
@@ -19,16 +19,17 @@ for file in $files; do
 done
 
 # apply links from other dirs
-echo "Sync binary sources with $BIN_DIR ..."
-for source_dir in $BIN_SOURCES; do
+echo "Sync binary sources with $BINARY_DIR ..."
+for source_dir in $BINARY_SOURCES; do
 	if [ ! -d $source_dir ]; then
 		continue;
 	fi
+	echo " -- source $source_dir"
 
 	# find executables in source dir
 	files=`find $source_dir -maxdepth 1 -perm +x`
 	for filename in $files; do
-		linkname=$BIN_DIR/`basename $filename`
+		linkname=$BINARY_DIR/`basename $filename`
 		echo "> create link $filename --> $linkname"
 		ln -sf $filename $linkname && chmod +x $linkname
 	done;
