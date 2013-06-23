@@ -1,0 +1,30 @@
+#!/bin/bash
+# 
+# Syncronizes data from source directories with generic bin directory
+#
+#
+#OPENSHIFT_DATA_DIR=/ded/www2/jenkinsagent
+BIN_DIR=$OPENSHIFT_DATA_DIR/bin
+BIN_SOURCES="$OPENSHIFT_REPO_DIR/bin $OPENSHIFT_DATA_DIR/gems/bin"
+
+# remove corrupted links
+echo "Remove broken links..."
+files=`find $BIN_DIR -maxdepth 1 -type l`
+
+for file in $files; do
+	if [ `readlink $file` !-f ]; then
+		echo "> remove broken link $file"
+		unlink $file
+	fi
+done
+
+# apply links from other dirs
+for source_dir in $BIN_SOURCES; do
+	# find executables in source dir
+	files=`find $source_dir -maxdepth 1 -prem +x`
+	for filename in $files; do
+		linkname=$BIN_DIR/`basename $filename`
+		echo "> create link $filename --> $linkname"
+		ln -sf $filename $linkname && chmod +x $linkname
+	end
+done;

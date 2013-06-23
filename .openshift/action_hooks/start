@@ -3,30 +3,8 @@
 # script. The application will work only if it binds to
 # $OPENSHIFT_INTERNAL_IP:8080
 
-
-
 echo "Current user is "
 echo `whoami`
-
-KEYPATH_RSA=$OPENSHIFT_DATA_DIR/.ssh/gitkey_deployment_rsa
-if [ !-f $KEYPATH_RSA ]; then
-	echo "Generate key pair for wrapper to $KEYPATH_RSA"
-	ssh-keygen -t rsa -N "" -C "deplyment key" -f $KEYPATH_RSA
-else
-	echo "Deployment key $KEYPATH_RSA already exists"
-fi
-
-
-echo "Generating autoexecutables"
-BASHRC=$OPENSHIFT_DATA_DIR/.bashrc
-echo "export GIT_SSH=$OPENSHIFT_REPO_DIR/misc/gitssh_wrapper.sh" > $BASHRC
-echo "export PATH=$PATH:$OPENSHIFT_REPO_DIR/bin:$OPENSHIFT_DATA_DIR/bin" >> $BASHRC
-
-
-echo "Binaries"
-#curl -sS https://getcomposer.org/installer | php
-#echo " > composer shortcut"
-
 
 
 nohup $OPENSHIFT_REPO_DIR/diy/testrubyserver.rb $OPENSHIFT_DIY_IP $OPENSHIFT_REPO_DIR/diy > $OPENSHIFT_DIY_DIR/logs/server.log 2>&1 &
