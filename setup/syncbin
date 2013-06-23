@@ -27,7 +27,7 @@ for source_dir in $BINARY_SOURCES; do
 	echo " -- source $source_dir"
 
 	# find executables in source dir
-	files=`find $source_dir -maxdepth 1 -perm +x`
+	files=`find -L $source_dir -maxdepth 1 -type f -executable`
 	for filename in $files; do
 		linkname=$BINARY_DIR/`basename $filename`
 		echo "> create link $filename --> $linkname"
