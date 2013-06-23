@@ -12,7 +12,7 @@ echo "Remove broken links..."
 files=`find $BIN_DIR -maxdepth 1 -type l`
 
 for file in $files; do
-	if [ `readlink $file` !-f ]; then
+	if [ ! -f `readlink $file` ]; then
 		echo "> remove broken link $file"
 		unlink $file
 	fi
@@ -20,11 +20,15 @@ done
 
 # apply links from other dirs
 for source_dir in $BIN_SOURCES; do
+	if [ ! -d $source_dir ]; then
+		continue;
+	fi
+
 	# find executables in source dir
-	files=`find $source_dir -maxdepth 1 -prem +x`
+	files=`find $source_dir -maxdepth 1 -perm +x`
 	for filename in $files; do
 		linkname=$BIN_DIR/`basename $filename`
 		echo "> create link $filename --> $linkname"
 		ln -sf $filename $linkname && chmod +x $linkname
-	end
+	done;
 done;

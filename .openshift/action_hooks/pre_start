@@ -2,23 +2,17 @@
 
 ## Generating key files if not exists
 KEYPATH_RSA=$OPENSHIFT_DATA_DIR/.ssh/gitkey_deployment_rsa
-if [ $KEYPATH_RSA !-f ]; then
+if [ ! -f $KEYPATH_RSA ]; then
+	test -d `dirname $KEYPATH_RSA` || mkdir -p `dirname $KEYPATH_RSA`
 	echo "Generate key pair for wrapper to $KEYPATH_RSA"
 	ssh-keygen -t rsa -N "" -C "deplyment key" -f $KEYPATH_RSA
 else
 	echo "Deployment key $KEYPATH_RSA already exists"
 fi
 
-
-
 ## Make all binaries available in bin dir
-# gems
+$OPENSHIFT_REPO_DIR/setup/syncbin
 
 
-
-
-
-echo "Exporting path on pre-start"
-PATH=$PATH:/qweqweqweqweqwe
-export PATH=$PATH
-
+## Import env vars
+source $OPENSHIFT_REPO_DIR/setup/envs
