@@ -8,7 +8,7 @@ BIN_DIR=$OPENSHIFT_DATA_DIR/bin
 BIN_SOURCES="$OPENSHIFT_REPO_DIR/bin $OPENSHIFT_DATA_DIR/gems/bin"
 
 # remove corrupted links
-echo "Remove broken links..."
+echo "Remove broken links ..."
 files=`find $BIN_DIR -maxdepth 1 -type l`
 
 for file in $files; do
@@ -19,6 +19,7 @@ for file in $files; do
 done
 
 # apply links from other dirs
+echo "Sync binary sources with $BIN_DIR ..."
 for source_dir in $BIN_SOURCES; do
 	if [ ! -d $source_dir ]; then
 		continue;
