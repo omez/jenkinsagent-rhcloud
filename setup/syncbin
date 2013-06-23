@@ -5,7 +5,7 @@
 #
 #OPENSHIFT_DATA_DIR=/ded/www2/jenkinsagent
 BINARY_DIR=$OPENSHIFT_DATA_DIR/bin
-BINARY_SOURCES="$OPENSHIFT_REPO_DIR/bin $OPENSHIFT_DATA_DIR/gems/bin"
+BINARY_SOURCES="$OPENSHIFT_REPO_DIR/bin $OPENSHIFT_DATA_DIR/gems/bin $OPENSHIFT_DATA_DIR/npm/bin"
 
 # remove corrupted links
 echo "Remove broken links ..."
