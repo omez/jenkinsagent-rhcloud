@@ -1,3 +1,4 @@
-!#/bin/bash
+#!/bin/bash
+
 __DIR__=`dirname $0`
-java -jar liquibase-3.0.0-bin/liquibase.jar $@
+java -jar $__DIR__/liquibase-3.0.0-bin/liquibase.jar $@
